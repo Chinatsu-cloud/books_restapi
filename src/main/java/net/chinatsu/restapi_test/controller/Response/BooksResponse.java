@@ -1,5 +1,8 @@
 package net.chinatsu.restapi_test.controller.Response;
 
+import java.util.List;
+
+//コンストラクタ
 public class BooksResponse {
     
     private int ID;
@@ -18,9 +21,37 @@ public class BooksResponse {
         Location = location;
     }
 
+
+    //setter
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
+    public void setCategory(String category) {
+        Category = category;
+    }
+
+    public void setAuthor(String author) {
+        Author = author;
+    }
+
+    public void setPublicationYear(int publicationYear) {
+        PublicationYear = publicationYear;
+    }
+
+    public void setLocation(String location) {
+        Location = location;
+    }
+
+    
     public static void delete(String bookId) {
     }
 
+    //getter
     public int getID() {
         return ID;
     }
@@ -45,3 +76,4 @@ public class BooksResponse {
         return Location;
     }
 }
+

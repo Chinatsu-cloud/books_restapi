@@ -13,12 +13,13 @@ import org.yaml.snakeyaml.events.Event;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class BooksController {
     
-    @GetMapping("/books")//クエリ文字列で所蔵している本をIDで検索？/books?ID={"id"}（アクティブパラメータ）
-    public List<BooksResponse>getBooks(){
+    @GetMapping("/books/{id}")//クエリ文字列で登録した本をIDで検索？/books?ID={"id"}
+    public List<BooksResponse>getBooksInfoByID(@PathVariable long id){
         List<BooksResponse>books=List.of(
                 new BooksResponse(1,"Guri and Gura","pictureBook","ErikoNakagawa",1963,"1階児童"),
                 new BooksResponse(2,"And Then There Were None","mystery","Agatha Christie",1939,"1階ミステリ"),
@@ -29,7 +30,7 @@ public class BooksController {
     
     @PostMapping("/books")
     public ResponseEntity<BooksRegisterResponse>registractionbooks(@RequestBody BooksRegisterRequest booksRegisterRequest, UriComponentsBuilder uriComponentsBuilder){
-        URI uri = uriComponentsBuilder.path("/books/{id}").buildAndExpand(5).toUri();
+        URI uri = uriComponentsBuilder.path("/books/{id}").buildAndExpand(4).toUri();
         return ResponseEntity.created(uri).body(new BooksRegisterResponse("a new book info is registered!"));
     }
     
@@ -39,10 +40,9 @@ public class BooksController {
     }
     
     @DeleteMapping("/books/{id}")
-    public ResponseEntity<BooksDeleteResponse>deleteBooks(@PathVariable("id")String bookId){
+    public ResponseEntity<Object> deleteBooks(@PathVariable("id")String bookId){
         BooksResponse.delete(bookId);
         return ResponseEntity.noContent().build();
-        
     }
     
 }
