@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 public class BooksController {
     
-    @GetMapping("/books/{id}")//クエリ文字列で登録した本をIDで検索？/books?ID={"id"}
+    @GetMapping("/books/{id}")//登録した本をIDで検索？/books?ID={"id"}
     public List<BooksResponse>getBooksInfoByID(@PathVariable long id){
         List<BooksResponse>books=List.of(
                 new BooksResponse(1,"Guri and Gura","pictureBook","ErikoNakagawa",1963,"1階児童"),
